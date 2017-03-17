@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <title>hello world</title>
+    <style type="text/css">
+    	img {
+    		max-width: 100%;
+    		max-height: 100%;
+		}
+    </style>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script type="text/javascript">
+    	function load_html(fa, node,k){
+    		//if(i ==1) return
+    		var name = node['name']
+    		if (name == 'text'){
+    			fa.append(node['attrs']['text']);
+    			console.log(node['attrs']['text']);
+    			return
+    		}
+    		
+    		var son = $("<" + name + ">");
+    		//fa.append(son);
+    		var attrs = node['attrs'];
+    		for (var k in node['attrs']){
+    				son.attr(k, node['attrs'][k]);
+    		}
+    		//childrens = node['childrens'];
+    		for (var i = 0; i < node['childrens'].length; i ++){
+    			//if(node['childrens'][i]['name'] == 'text') continue;
+    			load_html(son, node['childrens'][i], k+1);
+    			//console.log();
+    		}
+    		fa.append(son);
+    		//for (i in node['childrens'])
+    	}
+    	function helloworld(data){
+    		load_html($("body"), data, 0);
+		}
+   		document.addEventListener('plusready', function(){
+   			alert("welcome to Html5plus!");
+   		});
+   		$(document).ready(function(){
+   			$.ajax({ 
+                type:"post", 
+                data:"", 
+                url:"http://118.89.240.187/test", 
+                dataType:"json", 
+                //jsonp:"callback", 
+                success:helloworld
+            });
+   			//var s = "p"
+   			//var div =$("<"+s+">").addClass("one").css("top",5);
+   			//$("div").append(div);
+   		});
+   		
+    </script>
+</head>
+<body>
+	<div >
+	</div>
+</body>
+	
+</html>
