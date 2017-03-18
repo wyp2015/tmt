@@ -18,7 +18,7 @@
     		var name = node['name']
     		if (name == 'text'){
     			fa.append(node['attrs']['text']);
-    			console.log(node['attrs']['text']);
+    			//console.log(node['attrs']['text']);
     			return
     		}
     		
@@ -40,9 +40,9 @@
     	function helloworld(data){
     		load_html($("body"), data, 0);
 		}
-   		document.addEventListener('plusready', function(){
+   		/*document.addEventListener('plusready', function(){
    			alert("welcome to Html5plus!");
-   		});
+   		});*/
    		$(document).ready(function(){
    			$.ajax({ 
                 type:"post", 
